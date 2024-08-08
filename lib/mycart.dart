@@ -20,16 +20,17 @@ class CartScreen extends StatelessWidget {
             children: [
               Expanded(
                 child: ListTile(
-                  leading: Image.asset(product.image),
-                  title: Text(product.name),
-                  subtitle: Text(product.price.toString()),
+                  leading: Image.asset(product.product.image),
+                  title: Text(product.product.name),
+                  subtitle: Text(
+                      'price: ${product.product.price.toString()}, total:${product.quantity}'),
                 ),
               ),
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  Provider.of<CartProvider>(context, listen: false)
-                      .removeProductFromCart(product);
+                  // Provider.of<CartProvider>(context, listen: false)
+                  //     .removeProductFromCart(product);
                 },
               ),
             ],
