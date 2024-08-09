@@ -40,7 +40,7 @@ class ProductDetailsModal extends StatelessWidget {
                     product.image,
                     scale: 3,
                   ),
-                  const CounterComponent(),
+                  CounterComponent(context.watch<CounterProviders>().counter),
                 ],
               ),
               const Spacer(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_provider_example/components/counter_component.dart';
 import 'package:flutter_provider_example/providers/product_providers.dart';
 import 'package:provider/provider.dart';
 
@@ -22,16 +23,21 @@ class CartScreen extends StatelessWidget {
                 child: ListTile(
                   leading: Image.asset(product.product.image),
                   title: Text(product.product.name),
-                  subtitle: Text(
-                      'price: ${product.product.price.toString()}, total:${product.quantity}'),
+                  subtitle: Text('price: ${product.product.price.toString()}'),
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () {
-                  cartProvider.removeProductFromCart(
-                      product.product, product.quantity);
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  CounterComponent(cartProvider.cart[index].quantity),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      cartProvider.removeProductFromCart(
+                          product.product, product.quantity);
+                    },
+                  ),
+                ],
               ),
             ],
           );
