@@ -29,8 +29,8 @@ class CartScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
-                  // Provider.of<CartProvider>(context, listen: false)
-                  //     .removeProductFromCart(product);
+                  cartProvider.removeProductFromCart(
+                      product.product, product.quantity);
                 },
               ),
             ],

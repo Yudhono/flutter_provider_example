@@ -13,8 +13,16 @@ class CartProvider extends ChangeNotifier {
   }
 
   void removeProductFromCart(Product product, int quantity) {
-    _cart.remove(Cart(product: product, quantity: quantity));
-    notifyListeners();
+    final cartItem = _cart.firstWhere(
+      (item) => item.product == product && item.quantity == quantity,
+      orElse: () => Cart(
+          product: product, quantity: 0), // Not recommended unless necessary
+    );
+
+    if (cartItem.quantity != 0) {
+      _cart.remove(cartItem);
+      notifyListeners();
+    }
   }
 
   void clearCart() {
